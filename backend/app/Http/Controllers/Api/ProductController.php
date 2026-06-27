@@ -8,11 +8,21 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::with(['category', 'prices.store'])->get();
-        return response()->json($products);
-    }
+    public function index(Request $request)
+{
+    $search = $request->query('search');
+
+    $products = Product::with([
+        'category',
+        'prices.store'
+    ])
+    ->when($search, function ($query, $search) {
+        $query->where('name', 'like', '%' . $search . '%');
+    })
+    ->get();
+
+    return response()->json($products);
+}
 
     public function show($id)
     {
