@@ -1,6 +1,8 @@
 # Backend
 backend/vendor/
 backend/.env
+backend/storage/logs/*
+backend/bootstrap/cache/*.php
 
 # Frontend
 frontend/node_modules/
@@ -15,3 +17,5 @@ frontend/dist/
 # OS
 .DS_Store
 Thumbs.db
+
+dokumentacija/
